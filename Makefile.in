@@ -242,7 +242,7 @@ reconfig config.status:	$(srcdir)/configure $(srcdir)/enc/Makefile.in
 $(srcdir)/configure: $(srcdir)/configure.in
 	$(CHDIR) $(srcdir) && exec $(AUTOCONF)
 
-incs: id.h
+incs: id.h probes.h
 
 # Things which should be considered:
 # * with gperf v.s. without gperf
@@ -298,6 +298,10 @@ enc/unicode/name2ctype.h: enc/unicode/name2ctype.kwd
 .c.i:
 	@$(ECHO) preprocessing $<
 	$(Q) $(CPP) $(XCFLAGS) $(CPPFLAGS) $(COUTFLAG)$@ -E $< > $@
+
+probes.h:
+	@$(ECHO) building probes.h $<
+	dtrace -o $@ -h -s probes.d
 
 clean-local::
 	$(Q)$(RM) ext/extinit.c ext/extinit.$(OBJEXT) ext/ripper/y.output

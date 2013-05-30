@@ -72,6 +72,7 @@ y.tab.c
 /ppack
 /prelude.c
 /preview
+/probes.h
 /rbconfig.rb
 /rename2.h
 /repack
